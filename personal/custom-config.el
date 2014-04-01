@@ -1,13 +1,15 @@
 ;; my custom code style
 ;; (add-to-list 'load-path prelude-core-dir)
 
-(prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete autopair flymake-cppcheck flymake-cursor slime))
+(prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete autopair flymake-cppcheck flymake-cursor slime ac-slime ac-c-headers))
 
 (load (expand-file-name "custom/google-c-style.el" prelude-personal-dir))
 (load (expand-file-name "custom/my_codestyle.el" prelude-personal-dir))
 (load (expand-file-name "custom/revbufs.el" prelude-personal-dir))
 (load (expand-file-name "custom/xcscope.el" prelude-personal-dir))
 (load (expand-file-name "custom/gtags.el" prelude-personal-dir))
+(load (expand-file-name "custom/auto-complete+.el" prelude-personal-dir))
+(load (expand-file-name "custom/auto-complete-settings.el" prelude-personal-dir))
 
 (setq-default indent-tabs-mode nil)
 
@@ -75,6 +77,10 @@
 ;;(semantic-load-enable-code-helpers)
 ;;(global-semantic-idle-summary-mode)
 ;;(global-semantic-decoration-mode nil)
+;;(require 'semantic)
+;;(semantic-load-enable-code-helpers) 
+
+(semantic-mode)
 
 ;;;;gtags
 (autoload 'gtags-mode "gtags" "" t)
@@ -93,3 +99,10 @@
              (setq hl-line-face 'underline)
              (hl-line-mode 1)
              ))
+
+;; auto-complete
+(define-key ac-completing-map "\r" nil)
+(define-key ac-completing-map "\t" nil)
+(define-key ac-completing-map "\M-j" 'ac-complete)
+
+
