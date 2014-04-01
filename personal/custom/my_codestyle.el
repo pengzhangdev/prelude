@@ -89,26 +89,6 @@ Non-interactive arguments are Begin End Regexp"
 ;;(add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
-;; show whitespace/tab and delete trailing white space when saving
-;;(setq whitespace-style
-;;      '(face indentation::tab indentation::space tabs tab-mark trailing))
-;;(whitespace-mode 1)
-;;(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; Sets show-trailing-whitespace as expected
-;;(custom-set-variables
-;; '(show-trailing-whitespace t))
-
-;; Draw tabs with the same color as trailing whitespace
-;;(add-hook 'font-lock-mode-hook
-;;          (lambda ()
-;;            (font-lock-add-keywords
-;;             nil
-;;             '(("\t" 0 'trailing-whitespace prepend)))))
-
-;; 80 col
-;;(column-number-mode 1)
-;;(size-indication-mode 1)
 
 ;;; cpplint
 (defun cpplint ()
@@ -122,3 +102,29 @@ Non-interactive arguments are Begin End Regexp"
   (interactive)
   (compilation-start (concat "cppcheck --enable=all " (buffer-file-name))))
 
+;;;; CodeStyle : COMMON LISP
+
+(defun my-lisp-mode-common-hook ()
+  "lisp mode common hook abount the code style and config for plugins"
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (require 'slime-autoloads)
+  (setq slime-contribs '(slime-fancy))
+  (require 'ac-slime)
+  ;;  (add-hook 'slime-mode-hook 'set-up-slime-ac)
+  (add-hook 'slime-mode-hook
+            #'(lambda ()
+                (set-up-slime-ac)
+                (autopair-mode)))
+  ;; (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+  (add-hook 'slime-repl-mode-hook
+            #'(lambda ()
+                (set-up-slime-ac)
+                (autopair-mode)))
+  ;;  (slime-mode)
+  ;;  (autopair-mode)
+  ;;(auto-complete-mode)
+  (eval-after-load "auto-complete"
+    '(add-to-list 'ac-modes 'slime-repl-mode))
+  )
+
+(add-hook 'lisp-mode-hook 'my-lisp-mode-common-hook)
