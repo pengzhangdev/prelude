@@ -1,7 +1,7 @@
 ;; my custom code style
 ;; (add-to-list 'load-path prelude-core-dir)
 
-(prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete autopair flymake-cppcheck flymake-cursor slime ac-slime ac-c-headers))
+(prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete autopair flymake-cppcheck flymake-cursor slime ac-slime ac-c-headers smart-compile))
 
 (load (expand-file-name "custom/google-c-style.el" prelude-personal-dir))
 (load (expand-file-name "custom/my_codestyle.el" prelude-personal-dir))
@@ -99,6 +99,12 @@
              (setq hl-line-face 'underline)
              (hl-line-mode 1)
              ))
+
+;; diable withspace and use C-n n instead.
+(setq prelude-whitespace nil)
+
+;; flyspell conflict with auto-complete
+(setq prelude-flyspell nil)
 
 ;; auto-complete
 (define-key ac-completing-map "\r" nil)
