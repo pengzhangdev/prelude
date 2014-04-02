@@ -3,13 +3,8 @@
 
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete autopair slime ac-slime ac-c-headers smart-compile))
 
-(load (expand-file-name "custom/google-c-style.el" prelude-personal-dir))
-(load (expand-file-name "custom/my_codestyle.el" prelude-personal-dir))
-(load (expand-file-name "custom/revbufs.el" prelude-personal-dir))
-(load (expand-file-name "custom/xcscope.el" prelude-personal-dir))
-(load (expand-file-name "custom/gtags.el" prelude-personal-dir))
-(load (expand-file-name "custom/auto-complete+.el" prelude-personal-dir))
-(load (expand-file-name "custom/auto-complete-settings.el" prelude-personal-dir))
+(mapc 'load (directory-files 
+             (expand-file-name "custom" prelude-personal-dir) 't "^[^#].*el$"))
 
 (setq-default indent-tabs-mode nil)
 
