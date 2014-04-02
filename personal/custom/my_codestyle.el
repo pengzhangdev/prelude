@@ -114,12 +114,14 @@ Non-interactive arguments are Begin End Regexp"
   (add-hook 'slime-mode-hook
             #'(lambda ()
                 (set-up-slime-ac)
-                (autopair-mode)))
+                ;;(autopair-mode)
+                ))
   ;; (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
   (add-hook 'slime-repl-mode-hook
             #'(lambda ()
                 (set-up-slime-ac)
-                (autopair-mode)))
+                ;;(autopair-mode)
+                ))
   ;;  (slime-mode)
   ;;  (autopair-mode)
   ;;(auto-complete-mode)
