@@ -18,7 +18,7 @@
   "Settings for `auto-complete'."
   (setq help-xref-following nil)
   
-  (add-to-list 'ac-dictionary-directories "/usr/local/share/emacs/23.3/lisp/ac-dict")
+  ;;(add-to-list 'ac-dictionary-directories "/usr/local/share/emacs/23.3/lisp/ac-dict")
 
   (setq ac-auto-show-menu t
         ac-auto-start t
