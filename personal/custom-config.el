@@ -111,4 +111,5 @@
 (define-key ac-completing-map "\t" nil)
 (define-key ac-completing-map "\M-j" 'ac-complete)
 
-
+;; disable current line highlight
+(global-hl-line-mode -1)
