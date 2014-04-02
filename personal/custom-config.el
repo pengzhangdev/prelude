@@ -106,5 +106,7 @@
 (define-key ac-completing-map "\t" nil)
 (define-key ac-completing-map "\M-j" 'ac-complete)
 
-;; disable current line highlight
-(global-hl-line-mode -1)
+;; set highlight color 
+;; both the higlight current line color and enclose parens color 
+(set-face-background 'hl-line "#3e4446")
+(set-face-foreground 'highlight nil)
