@@ -110,3 +110,6 @@
 ;; both the higlight current line color and enclose parens color 
 (set-face-background 'hl-line "#3e4446")
 (set-face-foreground 'highlight nil)
+
+;; set off guru-mode, because of smartparen
+(setq prelude-guru nil)
