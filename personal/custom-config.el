@@ -30,10 +30,10 @@
 (global-set-key [(meta f5)] 'highlight-symbol-prev)
 (global-set-key [(control meta f5)] 'highlight-symbol-query-replace)
 
-(global-set-key [(control left)] 'windmove-left)
-(global-set-key [(control down)] 'windmove-down)
-(global-set-key [(control up)] 'windmove-up)
-(global-set-key [(control right)] 'windmove-right)
+;; (global-set-key [(control left)] 'windmove-left)
+;; (global-set-key [(control down)] 'windmove-down)
+;; (global-set-key [(control up)] 'windmove-up)
+;; (global-set-key [(control right)] 'windmove-right)
 
 
 (setq semanticdb-default-save-directory "~/.emacs.d/semanticdb/")
