@@ -76,6 +76,10 @@
 ;;(semantic-load-enable-code-helpers) 
 
 (semantic-mode)
+(global-semantic-idle-scheduler-mode)
+(global-semantic-idle-summary-mode)
+(global-semantic-highlight-func-mode)
+(global-semantic-decoration-mode)
 
 ;;;;gtags
 (autoload 'gtags-mode "gtags" "" t)
