@@ -117,3 +117,6 @@
 
 ;; set off guru-mode, because of smartparen
 (setq prelude-guru nil)
+
+;; confirm befor exit emacs
+(setq confirm-kill-emacs 'yes-or-no-p)
