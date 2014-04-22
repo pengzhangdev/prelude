@@ -125,3 +125,6 @@
 
 ;; emacs tmux
 (require 'emamux)
+
+;; remove smartparen pair '{}'
+(sp-pair "\{" nil :actions :rem)
