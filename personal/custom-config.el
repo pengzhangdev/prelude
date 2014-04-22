@@ -120,3 +120,6 @@
 
 ;; confirm befor exit emacs
 (setq confirm-kill-emacs 'yes-or-no-p)
+
+;; remove smartparen pair '{}'
+(sp-pair "\{" nil :actions :rem)
