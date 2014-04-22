@@ -87,7 +87,7 @@ Non-interactive arguments are Begin End Regexp"
                                        filename))
                 (c-set-style "my-c-mode-common-hook")))))
 ;;(add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
-;;(add-hook 'c-mode-common-hook 'google-make-newline-indent)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 
 ;;; cpplint
