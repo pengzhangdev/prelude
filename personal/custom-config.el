@@ -1,9 +1,11 @@
 ;; my custom code style
 ;; (add-to-list 'load-path prelude-core-dir)
 
-(prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete autopair slime ac-slime ac-c-headers smart-compile))
+(prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
+                                      autopair slime ac-slime ac-c-headers smart-compile
+                                      emamux))
 
-(mapc 'load (directory-files 
+(mapc 'load (directory-files
              (expand-file-name "custom" prelude-personal-dir) 't "^[^#].*el$"))
 
 (setq-default indent-tabs-mode nil)
@@ -73,7 +75,7 @@
 ;;(global-semantic-idle-summary-mode)
 ;;(global-semantic-decoration-mode nil)
 ;;(require 'semantic)
-;;(semantic-load-enable-code-helpers) 
+;;(semantic-load-enable-code-helpers)
 
 (semantic-mode)
 (global-semantic-idle-scheduler-mode)
@@ -110,8 +112,8 @@
 (define-key ac-completing-map "\t" nil)
 (define-key ac-completing-map "\M-j" 'ac-complete)
 
-;; set highlight color 
-;; both the higlight current line color and enclose parens color 
+;; set highlight color
+;; both the higlight current line color and enclose parens color
 (set-face-background 'hl-line "#3e4446")
 (set-face-foreground 'highlight nil)
 
@@ -123,3 +125,6 @@
 
 ;; remove smartparen pair '{}'
 (sp-pair "\{" nil :actions :rem)
+
+;; emacs tmux
+(require 'emamux)
