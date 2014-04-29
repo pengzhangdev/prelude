@@ -38,7 +38,7 @@
 ;; (global-set-key [(control right)] 'windmove-right)
 
 
-(setq semanticdb-default-save-directory "~/.emacs.d/semanticdb/")
+;;(setq semanticdb-default-save-directory "~/.emacs.d/semanticdb/")
 
 
 ;;;;;;yasnippet
@@ -56,11 +56,11 @@
 (global-set-key (kbd "<f7>") 'smart-compile)
 
 ;;;; auto save to ~/.emacs.d/autobakcup
-(setq kept-old-versions 2)
-(setq kept-new-versions 5)
-(setq delete-old-versions t)
-(setq backup-directory-alist '(("." . "~/.emacs.d/autobakcup")))
-(setq backup-by-copying t)
+;;(setq kept-old-versions 2)
+;;(setq kept-new-versions 5)
+;;(setq delete-old-versions t)
+;;(setq backup-directory-alist '(("." . "~/.emacs.d/autobakcup")))
+;;(setq backup-by-copying t)
 
 ;;;; show errors in C/Cpp
 (global-cwarn-mode 1)
