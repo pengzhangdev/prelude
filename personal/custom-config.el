@@ -3,7 +3,7 @@
 
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
                                       autopair slime ac-slime ac-c-headers smart-compile
-                                      emamux))
+                                      emamux pomodoro))
 
 (mapc 'load (directory-files
              (expand-file-name "custom" prelude-personal-dir) 't "^[^#].*el$"))
@@ -56,11 +56,11 @@
 (global-set-key (kbd "<f7>") 'smart-compile)
 
 ;;;; auto save to ~/.emacs.d/autobakcup
-;;(setq kept-old-versions 2)
-;;(setq kept-new-versions 5)
-;;(setq delete-old-versions t)
-;;(setq backup-directory-alist '(("." . "~/.emacs.d/autobakcup")))
-;;(setq backup-by-copying t)
+(setq kept-old-versions 2)
+(setq kept-new-versions 5)
+(setq delete-old-versions t)
+(setq backup-directory-alist `((".*" . ,(expand-file-name "autobackup" prelude-savefile-dir))))
+(setq auto-save-file-name-transforms `((".*" ,(expand-file-name "autobackup" prelude-savefile-dir) t)))
 
 ;;;; show errors in C/Cpp
 (global-cwarn-mode 1)
