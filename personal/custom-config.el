@@ -3,7 +3,7 @@
 
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
                                       autopair slime ac-slime ac-c-headers smart-compile
-                                      emamux pomodoro))
+                                      emamux pomodoro htmlize xcscope))
 
 (mapc 'load (directory-files
              (expand-file-name "custom" prelude-personal-dir) 't "^[^#].*el$"))
@@ -129,3 +129,6 @@
 ;; emacs tmux
 (require 'emamux)
 
+;; enable highlight when export to html
+;; This require htmlize.el
+(setq org-src-fontify-natively t)
