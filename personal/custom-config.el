@@ -67,6 +67,10 @@
 
 ;;;;;;cscope
 (require 'xcscope)
+(add-hook 'c-mode-hook (function cscope-minor-mode))
+(add-hook 'c++-mode-hook (function cscope-minor-mode))
+(add-hook 'dired-mode-hook (function cscope-minor-mode))
+
 
 ;;;; semantic
 ;; (require 'semantic)
@@ -132,3 +136,6 @@
 ;; enable highlight when export to html
 ;; This require htmlize.el
 (setq org-src-fontify-natively t)
+
+;; disabel 2 window swap
+(define-key prelude-mode-map (kbd "C-c s") nil)
