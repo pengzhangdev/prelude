@@ -3,7 +3,7 @@
 
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
                                       autopair slime ac-slime ac-c-headers smart-compile
-                                      emamux pomodoro htmlize xcscope))
+                                      emamux pomodoro htmlize xcscope jedi))
 
 (mapc 'load (directory-files
              (expand-file-name "custom" prelude-personal-dir) 't "^[^#].*el$"))
@@ -139,3 +139,7 @@
 
 ;; disabel 2 window swap
 (define-key prelude-mode-map (kbd "C-c s") nil)
+
+;; python development env
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t) 
