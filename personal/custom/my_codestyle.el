@@ -53,39 +53,41 @@ Non-interactive arguments are Begin End Regexp"
 ;;(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 (add-hook 'c-mode-common-hook
           (function (lambda ()
-                      (google-set-c-style)
-                      (infer-indentation-style)
-                      (setq tab-width 4)
-                      (setq c-basic-offset tab-width))))
+                      (my-c-mode-common-hook)
+                      ;;(infer-indentation-style)
+                      ;;(setq tab-width 4)
+                      ;;(setq c-basic-offset tab-width)
+                      )))
 (add-hook 'c++-mode-common-hook
           (function (lambda ()
-                      (google-set-c-style)
-                      (infer-indentation-style)
-                      (setq tab-width 4)
-                      (setq c-basic-offset tab-width))))
+                      (my-c-mode-common-hook)
+                      ;;(infer-indentation-style)
+                      ;;(setq tab-width 4)
+                      ;;(setq c-basic-offset tab-width)
+                      )))
 
 ;; (add-hook 'c-mode-common-hook
 ;;           (function (lambda () (flymake-mode))))
 ;; (add-hook 'c++-mode-common-hook
 ;;           (function (lambda () (flymake-mode))))
 
-(add-hook 'c-mode-hook
-          (lambda ()
-            (let ((filename (buffer-file-name)))
-              ;; Enable kernel mode for the appropriate files
-              (when (and filename
-                         (string-match ".*work.*"
-                                       filename))
-                (c-set-style "my-c-mode-common-hook")))))
+;; (add-hook 'c-mode-hook
+;;           (lambda ()
+;;             (let ((filename (buffer-file-name)))
+;;               ;; Enable kernel mode for the appropriate files
+;;               (when (and filename
+;;                          (string-match ".*work.*"
+;;                                        filename))
+;;                 (c-set-style "my-c-mode-common-hook")))))
 
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (let ((filename (buffer-file-name)))
-              ;; Enable kernel mode for the appropriate files
-              (when (and filename
-                         (string-match ".*work.*"
-                                       filename))
-                (c-set-style "my-c-mode-common-hook")))))
+;; (add-hook 'c++-mode-hook
+;;           (lambda ()
+;;             (let ((filename (buffer-file-name)))
+;;               ;; Enable kernel mode for the appropriate files
+;;               (when (and filename
+;;                          (string-match ".*work.*"
+;;                                        filename))
+;;                 (c-set-style "my-c-mode-common-hook")))))
 ;;(add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
