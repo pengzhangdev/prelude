@@ -17,4 +17,6 @@ or nil if not found."
 (let ((my-tags-file (find-file-upwards "TAGS")))
   (when my-tags-file
     (message "Loading tags file: %s" my-tags-file)
-    (visit-tags-table my-tags-file)))
+    ;;(setq-default tags-file-name my-tags-file)
+    (visit-tags-table my-tags-file)
+    ))

@@ -3,7 +3,7 @@
 
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
                                       autopair slime ac-slime ac-c-headers smart-compile
-                                      emamux pomodoro htmlize xcscope jedi))
+                                      emamux pomodoro htmlize xcscope jedi auto-compile))
 
 (mapc 'load (directory-files
              (expand-file-name "custom" prelude-personal-dir) 't "^[^#].*el$"))
