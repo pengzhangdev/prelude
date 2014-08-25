@@ -3,7 +3,7 @@
 
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
                                       autopair slime ac-slime ac-c-headers smart-compile
-                                      emamux pomodoro htmlize xcscope jedi auto-compile))
+                                      emamux pomodoro htmlize xcscope jedi auto-compile ggtags))
 
 (mapc 'load (directory-files
              (expand-file-name "custom" prelude-personal-dir) 't "^[^#].*el$"))
@@ -88,22 +88,22 @@
 (global-semantic-decoration-mode)
 
 ;;;;gtags
-(autoload 'gtags-mode "gtags" "" t)
-(gtags-mode 1)
-(setq gtags-auto-update 1)
-(global-set-key [f3] 'gtags-find-tag-from-here)
-(global-set-key [f2] 'gtags-pop-stack)
-(global-set-key (kbd "C-c g f") 'gtags-find-tag)
-(global-set-key (kbd "C-c g r") 'gtags-find-rtag)
-(global-set-key (kbd "C-c g u") 'gtags-pop-stack)
-(global-set-key (kbd "C-c g s") 'gtags-find-symbols)
-(global-set-key (kbd "C-c g g") 'gtags-find-with-grep)
-(global-set-key (kbd "C-c g o") 'gtags-select-tag)
-(add-hook 'gtags-select-mode-hook
-          '(lambda ()
-             (setq hl-line-face 'underline)
-             (hl-line-mode 1)
-             ))
+;;(autoload 'gtags-mode "gtags" "" t)
+;;(gtags-mode 1)
+;;(setq gtags-auto-update 1)
+;;(global-set-key [f3] 'gtags-find-tag-from-here)
+;;(global-set-key [f2] 'gtags-pop-stack)
+;;(global-set-key (kbd "C-c g f") 'gtags-find-tag)
+;;(global-set-key (kbd "C-c g r") 'gtags-find-rtag)
+;;(global-set-key (kbd "C-c g u") 'gtags-pop-stack)
+;;(global-set-key (kbd "C-c g s") 'gtags-find-symbols)
+;;(global-set-key (kbd "C-c g g") 'gtags-find-with-grep)
+;;(global-set-key (kbd "C-c g o") 'gtags-select-tag)
+;;(add-hook 'gtags-select-mode-hook
+;;          '(lambda ()
+;;;             (setq hl-line-face 'underline)
+;;;            (hl-line-mode 1)
+;;             ))
 
 ;; diable withspace and use C-n n instead.
 (setq prelude-whitespace nil)
@@ -143,3 +143,8 @@
 ;; python development env
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t) 
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
