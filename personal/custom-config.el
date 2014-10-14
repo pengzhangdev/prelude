@@ -3,7 +3,16 @@
 
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
                                       autopair slime ac-slime ac-c-headers smart-compile
-                                      emamux pomodoro htmlize xcscope jedi auto-compile ggtags))
+                                      emamux pomodoro htmlize xcscope jedi auto-compile
+                                      ggtags auto-complete-clang))
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1)
+              (define-key ggtags-mode-map "\M-," 'pop-tag-mark))
+            (when (derived-mode-p 'c-mode 'c++-mode 'objc-mode)
+              (setq ac-source (append '(ac-source-clang ac-source-yasnippet) ac-source))
+              )))
 
 (mapc 'load (directory-files
              (expand-file-name "custom" prelude-personal-dir) 't "^[^#].*el$"))
@@ -142,10 +151,6 @@
 
 ;; python development env
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t) 
+(setq jedi:complete-on-dot t)
 
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (ggtags-mode 1)
-              (define-key ggtags-mode-map "\M-," 'pop-tag-mark))))
+
