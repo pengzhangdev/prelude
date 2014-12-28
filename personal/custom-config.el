@@ -152,5 +152,6 @@
 ;; python development env
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+(setq jedi:use-shortcuts t) ;; using M-. and M-, to jump code
 
 
