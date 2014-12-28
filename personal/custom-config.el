@@ -153,5 +153,12 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 (setq jedi:use-shortcuts t) ;; using M-. and M-, to jump code
-
-
+I
+;;; jedi install guide
+;;; Install Python server (jediepcserver.py) by running
+;;;
+;;; M-x jedi:install-server in Emacs
+;;; (see also jedi:install-server).
+;;;
+;;;out of emacs, install python-virtualenv.
+;;;apt-get install python-virtualenv
