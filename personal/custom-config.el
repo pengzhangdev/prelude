@@ -76,8 +76,8 @@
 
 ;;;;;;cscope
 (require 'xcscope)
-(add-hook 'c-mode-hook (function cscope-minor-mode))
-(add-hook 'c++-mode-hook (function cscope-minor-mode))
+(add-hook 'c-mode-common-hook (function cscope-minor-mode))
+(add-hook 'c++-mode-common-hook (function cscope-minor-mode))
 (add-hook 'dired-mode-hook (function cscope-minor-mode))
 
 
@@ -153,7 +153,7 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 (setq jedi:use-shortcuts t) ;; using M-. and M-, to jump code
-I
+
 ;;; jedi install guide
 ;;; Install Python server (jediepcserver.py) by running
 ;;;
