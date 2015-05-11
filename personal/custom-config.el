@@ -203,4 +203,4 @@
 (setq eshell-prompt-function 'shk-eshell-prompt)
 (setq eshell-highlight-prompt nil)
 
-
+(define-key input-decode-map "\e[1;2A" [S-up])
