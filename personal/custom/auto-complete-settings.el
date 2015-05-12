@@ -47,14 +47,14 @@
 (eval-after-load "auto-complete"
   '(auto-complete-settings))
 
-(eval-after-load "cc-mode"
-  '(ac-settings-4-cc))
-
 (defun ac-settings-4-cc ()
   "`auto-complete' settings for `cc-mode'."
      (dolist (command `(c-electric-backspace
                         c-electric-backspace-kill))
        (add-to-list 'ac-trigger-commands-on-completing command)))
+
+(eval-after-load "cc-mode"
+  '(ac-settings-4-cc))
 
 (defun ac-settings-4-autopair ()
   "`auto-complete' settings for `autopair'."
