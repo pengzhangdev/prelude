@@ -4,7 +4,7 @@
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
                                       autopair slime ac-slime ac-c-headers smart-compile
                                       emamux pomodoro htmlize xcscope jedi auto-compile
-                                      ggtags auto-complete-clang multi-eshell))
+                                      ggtags auto-complete-clang multi-eshell header2))
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
@@ -204,3 +204,41 @@
 (setq eshell-highlight-prompt nil)
 
 (define-key input-decode-map "\e[1;2A" [S-up])
+
+;; config author and email
+(setq user-full-name "Werther Zhang")
+(setq user-mail-address "peng.zhang.dev@gmail.com")
+;;; config for header2
+(autoload 'auto-update-file-header "header2")
+(add-hook 'write-file-hooks 'auto-update-file-header)
+(autoload 'auto-make-header "header2")
+
+(defun header-custom-python ()
+  "Insert a shell specifier line"
+  (if (string= major-mode "python-mode")
+      (insert "#! /usr/bin/env python\n#\n")))
+(defun header-custom-shell ()
+  "Insert a python specifier line"
+  (if (string= major-mode "sh-mode")
+      (insert "#! /usr/bin/bash \n#\n")))
+(add-hook 'c-mode-common-hook  'auto-make-header)
+(add-hook 'python-mode-hook  'auto-make-header)
+(add-hook 'sh-mode-hook  'auto-make-header)
+
+(setq make-header-hook '(
+                         header-custom-python
+                         header-custom-shell
+                         header-title
+                         header-blank
+                         header-file-name
+                         header-description
+                         header-author
+                         header-maintainer
+                         header-copyright
+                         header-creation-date
+                         header-end-line
+                         header-history
+                         header-blank
+                         header-end-line))
+
+;;
