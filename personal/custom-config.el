@@ -4,7 +4,8 @@
 (prelude-require-packages '(yasnippet highlight-symbol dropdown-list auto-complete
                                       autopair slime ac-slime ac-c-headers smart-compile
                                       emamux pomodoro htmlize xcscope jedi auto-compile
-                                      ggtags auto-complete-clang multi-eshell header2))
+                                      ggtags auto-complete-clang multi-eshell header2
+                                      go-autocomplete))
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
@@ -119,11 +120,6 @@
 
 ;; flyspell conflict with auto-complete
 (setq prelude-flyspell nil)
-
-;; auto-complete
-(define-key ac-completing-map "\r" nil)
-(define-key ac-completing-map "\t" nil)
-(define-key ac-completing-map "\M-j" 'ac-complete)
 
 ;; set highlight color
 ;; both the higlight current line color and enclose parens color
@@ -242,3 +238,15 @@
                          header-end-line))
 
 ;;
+
+
+;; go-mode
+;; More info about installing gocode pls read https://github.com/nsf/gocode
+(require 'go-autocomplete)
+
+;; auto-complete
+(define-key ac-completing-map "\r" nil)
+(define-key ac-completing-map "\t" nil)
+(define-key ac-completing-map "\M-j" 'ac-complete)
+
+
