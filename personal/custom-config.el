@@ -220,7 +220,7 @@
 (defun header-custom-shell ()
   "Insert a python specifier line"
   (if (string= major-mode "sh-mode")
-      (insert "#! /usr/bin/bash \n#\n")))
+      (insert "#! /bin/bash \n#\n")))
 (add-hook 'c-mode-common-hook  'auto-make-header)
 (add-hook 'python-mode-hook  'auto-make-header)
 (add-hook 'sh-mode-hook  'auto-make-header)
