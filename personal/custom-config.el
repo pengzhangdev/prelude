@@ -161,7 +161,7 @@
 ;; eshell prompt
 
 (defmacro with-face (str &rest properties)
-    `(propertize ,str 'face (list ,@properties)))
+  `(propertize ,str 'face (list ,@properties)))
 
 (defun shortened-path (path max-len)
   "Return a modified version of `path', replacing some components
@@ -187,11 +187,11 @@
      "@"
      (with-face "localhost" :foreground "green")
      (with-face (concat ":" (shortened-path  (eshell/pwd) 40)) :foreground "#689")
-     ;; (with-face (format-time-string "(%Y-%m-%d %H:%M) " (current-time)) :background header-bg :foreground "#888") 
+     ;; (with-face (format-time-string "(%Y-%m-%d %H:%M) " (current-time)) :background header-bg :foreground "#888")
      (with-face
       (or (ignore-errors (format "(%s)" (vc-responsible-backend default-directory))) "")
       :foreground header-bg)
-     ;; (with-face "\n" :background header-bg) 
+     ;; (with-face "\n" :background header-bg)
      (if (= (user-uid) 0)
          (with-face " #" :foreground "red")
        " $")
@@ -242,11 +242,30 @@
 
 ;; go-mode
 ;; More info about installing gocode pls read https://github.com/nsf/gocode
+
+;; ###autoload
+(defun my-go-before-save-hook ()
+  "Format and fix imports error before save file"
+  (interactive)
+  (let (go-save-format-tool gofmt-command)
+    (setq gofmt-command "goimports")
+    ;; go get golang.org/x/tools/cmd/goimports FAILED, so ignore this one
+    ;;(call-interactively 'gofmt-before-save)
+    (setq gofmt-command go-save-format-tool))
+  (call-interactively 'gofmt-before-save))
+
+
+(defun my-go-mode-hook ()
+  ;;(add-hook 'before-save-hook 'gofmt-before-save)
+  (add-hook 'before-save-hook 'my-go-before-save-hook)
+  (local-set-key (kbd "M-.") 'godef-jump)
+  (go-eldoc-setup))
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+
+
 (require 'go-autocomplete)
 
 ;; auto-complete
 (define-key ac-completing-map "\r" nil)
 (define-key ac-completing-map "\t" nil)
 (define-key ac-completing-map "\M-j" 'ac-complete)
-
-
