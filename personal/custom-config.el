@@ -5,7 +5,7 @@
                                       autopair slime ac-slime ac-c-headers smart-compile
                                       emamux pomodoro htmlize xcscope jedi auto-compile
                                       ggtags auto-complete-clang multi-eshell header2
-                                      go-autocomplete))
+                                      go-autocomplete exec-path-from-shell))
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
@@ -239,6 +239,25 @@
 
 ;;
 
+;; exec-path-from-shell
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+;; basic executable file check in env
+(defun check-execution-in-env (exec)
+  (let ((exe-path (split-string (exec-path-from-shell-copy-env "PATH") path-separator))
+        (exists  nil))
+    (setf exe-path  (mapcar #'(lambda (path) (concatenate 'string path "/" exec)) exe-path))
+    ;; (loop for i in (mapcar #'(lambda (file) (or (file-exists-p file) (file-symlink-p file))) exe-path)
+    ;;       do (when i
+    ;;            (setf exists t)))
+    (loop for file in exe-path
+          do (when (or (file-exists-p file) (file-symlink-p file))
+                 (setf exists t)))
+    exists))
+
+;; test check-execution-in-env
+;; (check-execution-in-env "python")
 
 ;; go-mode
 ;; More info about installing gocode pls read https://github.com/nsf/gocode
@@ -247,12 +266,15 @@
 (defun my-go-before-save-hook ()
   "Format and fix imports error before save file"
   (interactive)
-  (let (go-save-format-tool gofmt-command)
-    (setq gofmt-command "goimports")
-    ;; go get golang.org/x/tools/cmd/goimports FAILED, so ignore this one
-    ;;(call-interactively 'gofmt-before-save)
+  (let ((go-save-format-tool gofmt-command))
+    (when (check-execution-in-env "goimports")
+      (progn 
+        (setq gofmt-command "goimports")
+        ;; go get golang.org/x/tools/cmd/goimport
+        (call-interactively 'gofmt-before-save)))
     (setq gofmt-command go-save-format-tool))
-  (call-interactively 'gofmt-before-save))
+  ;;(call-interactively 'gofmt-before-save)
+  )
 
 
 (defun my-go-mode-hook ()
